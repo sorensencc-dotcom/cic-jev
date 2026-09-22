@@ -7,7 +7,7 @@
   "engines": { "node": ">=24" },
   "scripts": {
     "start": "node src/main.js",
-    "test": "node --test test/",
+    "test": "node --test test/*.test.js",
     "smoke": "node scripts/smoke-test.mjs",
     "eval-confidence": "node scripts/eval-confidence.mjs",
     "verify-client-compat": "node scripts/verify-client-compat.mjs"
