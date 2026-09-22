@@ -1225,7 +1225,7 @@ no better than random, too small to claim statistical rigor. Task 10's
 decision record is required to cite this task's actual output, not assume
 a result.
 
-- [ ] **Step 1: Write the labeled eval set**
+- [x] **Step 1: Write the labeled eval set**
 
 ```json
 [
@@ -1242,7 +1242,7 @@ a result.
 ]
 ```
 
-- [ ] **Step 2: Write the eval script**
+- [x] **Step 2: Write the eval script**
 
 ```js
 // scripts/eval-confidence.mjs
@@ -1303,7 +1303,7 @@ for that statistic to mean anything at 10 items — it is not computed by
 this script. Do not remove the constant; it documents the deferred check
 rather than silently dropping it.
 
-- [ ] **Step 3: Run it against real Ollama**
+- [x] **Step 3: Run it against real Ollama**
 
 Run: `npm run eval-confidence`
 Expected: prints the per-case results, then either the `OK` line (accuracy ≥ 0.7) or the `FAIL` line with a non-zero exit code. Record the actual observed accuracy in Task 10's decision record — do not assume it passes before running it.
@@ -1314,7 +1314,7 @@ in the harness. Do not proceed to treat `confidence` as trustworthy in any
 downstream integration; note the failure in Task 10's decision record as an
 open blocker for those integrations.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add docs/meta/confidence-eval-set.json scripts/eval-confidence.mjs
