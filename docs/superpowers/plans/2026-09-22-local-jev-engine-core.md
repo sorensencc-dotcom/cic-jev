@@ -1482,7 +1482,7 @@ git commit -m "docs: record v1 model decision citing actual research and eval re
 - Consumes: `createServer` from `../src/server.js` (Task 5); `JevClient` from the `fast-jev-compaction` npm dependency (Task 1).
 - Produces: nothing consumed by later tasks — this is the real-Ollama companion to Task 6's automated mocked coverage; it exists to confirm the real model's output still round-trips through the real client, not to re-cover the shape checks Task 6 already covers deterministically.
 
-- [ ] **Step 1: Write the script**
+- [x] **Step 1: Write the script**
 
 ```js
 // scripts/verify-client-compat.mjs
@@ -1518,12 +1518,12 @@ try {
 }
 ```
 
-- [ ] **Step 2: Run it**
+- [x] **Step 2: Run it**
 
 Run: `npm run verify-client-compat`
 Expected: prints the parsed `JevResponse` (`{ answers: { keep: { noul, confidence } }, meta: {...} }`) then `OK: ...`.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add scripts/verify-client-compat.mjs
