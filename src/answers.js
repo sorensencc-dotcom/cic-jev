@@ -22,8 +22,8 @@ export function toSystemOneAnswers(questions, content) {
     const confidence = (certainty - 1) / 4;
 
     if (q.type === 'noul' || q.type === 'score') {
-      const value = Number(entry.value);
-      if (!Number.isFinite(value) || value < 0 || value > 1) {
+      const value = entry.value;
+      if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1) {
         throw new Error(`model response has invalid ${q.type} value for question "${id}": ${entry.value}`);
       }
       answers[id] = q.type === 'noul' ? { noul: value, confidence } : { score: value, confidence };
