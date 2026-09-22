@@ -152,7 +152,7 @@ named e.g. `keep_certainty` would otherwise silently collide with the
 generated field for a question named `keep`. Nesting removes the collision
 by construction: exactly one property per question id.
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```js
 // test/schema.test.js
@@ -228,12 +228,12 @@ test('buildPrompt fences the state as untrusted data, separate from instructions
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test test/schema.test.js`
 Expected: FAIL with "Cannot find module '../src/schema.js'"
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 // src/schema.js
@@ -310,12 +310,12 @@ export function buildPrompt(state, questions) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node --test test/schema.test.js`
 Expected: PASS, 9 tests
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/schema.js test/schema.test.js
