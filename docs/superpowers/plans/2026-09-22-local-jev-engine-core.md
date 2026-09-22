@@ -32,7 +32,7 @@
 **Interfaces:**
 - Produces: `npm test` script (`node --test test/`), `fast-jev-compaction` as a `dependencies` entry for later tasks to `import`, `docs/meta/MODEL_RESEARCH.md` for Task 10 to cite.
 
-- [ ] **Step 1: Write `package.json`**
+- [x] **Step 1: Write `package.json`**
 
 ```json
 {
@@ -57,13 +57,13 @@
 
 Pinned to the exact `0.4.0` (not `^0.4.0`) because the spec's compatibility claims (§2.4) were confirmed against that exact published version — a minor-version bump could change `JevClient`'s constructor shape without this plan's evidence covering it. Bump deliberately, re-verifying Task 6/11, not automatically.
 
-- [ ] **Step 2: Write `.gitignore`**
+- [x] **Step 2: Write `.gitignore`**
 
 ```
 node_modules/
 ```
 
-- [ ] **Step 3: Create the test directory**
+- [x] **Step 3: Create the test directory**
 
 Run: `mkdir -p test && touch test/.gitkeep`
 
@@ -71,17 +71,17 @@ Required because `node --test test/` on some Node versions errors with `ENOENT` 
 
 Confirmed live on this machine (Node v24.18.0, Windows): `node --test test/` (bare directory, with or without trailing slash, with or without `./`) fails with `MODULE_NOT_FOUND: Cannot find module 'C:\dev\cic-jev\test'` — Node treats the directory path as an entry-point script, not a test-discovery root, even when real `.test.js` files exist inside it. Only a glob (`node --test test/*.test.js`) works correctly in both the empty and populated case. `package.json`'s `test` script is `node --test test/*.test.js`, not `node --test test/` — do not "simplify" it back.
 
-- [ ] **Step 4: Install dependencies**
+- [x] **Step 4: Install dependencies**
 
 Run: `npm install`
 Expected: `node_modules/fast-jev-compaction` exists, `package-lock.json` created.
 
-- [ ] **Step 5: Verify test script runs with no tests yet**
+- [x] **Step 5: Verify test script runs with no tests yet**
 
 Run: `npm test`
 Expected: exits 0 (empty `test/` directory containing only `.gitkeep`, `node --test` reports 0 tests, 0 failures).
 
-- [ ] **Step 6: Model research spike — check community Jev models against Ollama**
+- [x] **Step 6: Model research spike — check community Jev models against Ollama**
 
 The spec (§3) lists three community model candidates and requires checking
 whether any run via Ollama before falling back to a stock instruct model.
@@ -106,7 +106,7 @@ proceed to Task 2 with the stock-model fallback assumption baked into Tasks
 2-9. Re-open the spec's §3 decision with the pulled model's actual output
 schema before continuing.
 
-- [ ] **Step 7: Record the research result**
+- [x] **Step 7: Record the research result**
 
 ```markdown
 <!-- docs/meta/MODEL_RESEARCH.md -->
@@ -127,7 +127,7 @@ the actual pull results above — do not assume the fallback before running
 Step 6>.
 ```
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add package.json package-lock.json .gitignore test/.gitkeep docs/meta/MODEL_RESEARCH.md
