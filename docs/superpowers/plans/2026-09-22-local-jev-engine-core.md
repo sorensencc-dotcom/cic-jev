@@ -1104,7 +1104,7 @@ exercised by tests that start it on an ephemeral port and close it
 immediately — there was no way to actually run `cic-jev` as a standing
 service. This task is that missing piece.
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```js
 // test/main.test.js
@@ -1131,12 +1131,12 @@ test('resolveConfig throws on a non-numeric JEV_PORT', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test test/main.test.js`
 Expected: FAIL with "Cannot find module '../src/main.js'"
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 // src/main.js
@@ -1186,19 +1186,19 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
 /* c8 ignore stop */
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node --test test/main.test.js`
 Expected: PASS, 3 tests
 
-- [ ] **Step 5: Manually verify the process starts and shuts down**
+- [x] **Step 5: Manually verify the process starts and shuts down**
 
 Run: `npm start`
 Expected: prints `cic-jev listening on http://127.0.0.1:4173 (model: qwen2.5:7b, ollama: http://127.0.0.1:11434)`.
 Then press Ctrl+C.
 Expected: prints `cic-jev received SIGINT, shutting down` and the process exits.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/main.js test/main.test.js
