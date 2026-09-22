@@ -334,7 +334,7 @@ git commit -m "feat: translate Jev questions to Ollama schema and prompt"
 - Consumes: nothing directly (takes already-parsed question map and raw JSON string content).
 - Produces: `toSystemOneAnswers(questions, content) -> { [id]: { noul?, choice?, score?, confidence } }`. Throws on any out-of-range or malformed model output — a schema-constrained response is a hint to the model, not a runtime guarantee, so this function is the last line of defense against a model that ignores the schema. Task 4 imports this by name from `../src/answers.js`.
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```js
 // test/answers.test.js
@@ -398,12 +398,12 @@ test('throws when a choice value is not one of criteria', () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test test/answers.test.js`
 Expected: FAIL with "Cannot find module '../src/answers.js'"
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 // src/answers.js
@@ -432,8 +432,8 @@ export function toSystemOneAnswers(questions, content) {
     const confidence = (certainty - 1) / 4;
 
     if (q.type === 'noul' || q.type === 'score') {
-      const value = Number(entry.value);
-      if (!Number.isFinite(value) || value < 0 || value > 1) {
+      const value = entry.value;
+      if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 1) {
         throw new Error(`model response has invalid ${q.type} value for question "${id}": ${entry.value}`);
       }
       answers[id] = q.type === 'noul' ? { noul: value, confidence } : { score: value, confidence };
@@ -451,12 +451,12 @@ export function toSystemOneAnswers(questions, content) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node --test test/answers.test.js`
 Expected: PASS, 9 tests
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/answers.js test/answers.test.js
