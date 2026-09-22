@@ -841,6 +841,13 @@ test('a client disconnect before Ollama responds does not crash the server', asy
       body: JSON.stringify({ state: {}, questions: { keep: { type: 'noul', instructions: '' } } }),
       signal: controller.signal,
     }).catch(() => {}); // client-side abort rejects this fetch; the assertion is that the server survives
+    // Wait for the server to actually reach askOllama (releaseOllama gets
+    // assigned there) before aborting — otherwise the client-side abort
+    // races the request off the socket before the server ever sees it, and
+    // this test disconnect-before-send, not disconnect-during-Ollama-call.
+    while (!releaseOllama) {
+      await new Promise((resolve) => setImmediate(resolve));
+    }
     controller.abort();
     await pending;
     releaseOllama({ ok: true, json: async () => ({ message: { content: JSON.stringify({ keep: { value: 0.5, certainty: 3 } }) } }) });
