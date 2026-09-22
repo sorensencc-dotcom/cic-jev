@@ -1,6 +1,10 @@
 # Resume: cic-jev core build, Codex-executed, Claude-reviewed
 
-**State:** plan done, reviewed twice (caveman-review found 4 real bugs, all fixed in-plan), nothing committed yet. New session starts here.
+**STATUS: CLOSED 2026-09-22.** All 11 tasks done, verified, committed, pushed (`origin/main` `0633161`). Nothing left to resume in this doc. See `docs/superpowers/HANDOFF-2026-09-22.md` for what was delivered, how it works now, and the deferred follow-up specs to write in a new session.
+
+---
+
+**State (historical, pre-close):** plan done, reviewed twice (caveman-review found 4 real bugs, all fixed in-plan), nothing committed yet. New session starts here.
 
 **Plan:** `docs/superpowers/plans/2026-09-22-local-jev-engine-core.md` (11 tasks)
 **Spec:** `docs/meta/spec-local-jev-engine.md`
