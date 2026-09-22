@@ -1017,7 +1017,7 @@ ran manually, late, against a live model, and exercised just one `noul`
 answer. This task exercises `noul`, `choice`, `score`, and the error path,
 deterministically, on every `npm test` run.
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```js
 // test/clientCompat.test.js
@@ -1070,17 +1070,17 @@ test('JevClient.ask() throws when the server returns an error status', async () 
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test test/clientCompat.test.js`
 Expected: FAIL with "Cannot find module 'fast-jev-compaction'" if Task 1's `npm install` was skipped, otherwise runs against `createServer` (which exists from Task 5) and should already pass — if it fails here, treat that as a real interop bug caught before Task 5 was declared done, not a "test needs code" failure. Confirm by reading the assertion diff.
 
-- [ ] **Step 3: Confirm it passes**
+- [x] **Step 3: Confirm it passes**
 
 Run: `node --test test/clientCompat.test.js`
 Expected: PASS, 4 tests. No implementation step — Tasks 2-5 already provide everything this test needs; this task exists purely to add the missing automated coverage.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add test/clientCompat.test.js
