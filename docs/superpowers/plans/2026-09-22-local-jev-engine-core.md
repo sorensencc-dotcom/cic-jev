@@ -658,7 +658,7 @@ questions) is rejected with 400 **before** Ollama is ever called; only
 failures from Ollama itself (network, timeout, invalid model output) become
 502.
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```js
 // test/server.test.js
@@ -867,12 +867,12 @@ test('a client disconnect before Ollama responds does not crash the server', asy
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test test/server.test.js`
 Expected: FAIL with "Cannot find module '../src/server.js'"
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 // src/server.js
@@ -984,17 +984,17 @@ export function createServer({ model, ollamaBaseUrl, fetchImpl } = {}) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node --test test/server.test.js`
 Expected: PASS, 12 tests
 
-- [ ] **Step 5: Run the full suite**
+- [x] **Step 5: Run the full suite**
 
 Run: `npm test`
 Expected: PASS, all tests across Tasks 2-5 (35 tests total)
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/server.js test/server.test.js
