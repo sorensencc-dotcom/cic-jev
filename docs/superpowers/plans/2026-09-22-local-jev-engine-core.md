@@ -1332,12 +1332,12 @@ git commit -m "test: add confidence heuristic eval harness against a labeled set
 - Consumes: `createServer` from `../src/server.js` (Task 5).
 - Produces: nothing consumed by later tasks — manual verification script, not part of `npm test`.
 
-- [ ] **Step 1: Confirm Ollama is running and has a model**
+- [x] **Step 1: Confirm Ollama is running and has a model**
 
 Run: `ollama list`
 Expected: at least one model listed. Use the model confirmed in Task 1's research (`docs/meta/MODEL_RESEARCH.md`) — substitute via `JEV_MODEL` if the installed model differs from `qwen2.5:7b`.
 
-- [ ] **Step 2: Write the script**
+- [x] **Step 2: Write the script**
 
 ```js
 // scripts/smoke-test.mjs
@@ -1400,12 +1400,12 @@ try {
 }
 ```
 
-- [ ] **Step 3: Run it**
+- [x] **Step 3: Run it**
 
 Run: `npm run smoke`
 Expected: prints a JSON body with `answers.keep`, `answers.severity`, `answers.relevance`, each carrying a `confidence` field, then `OK: ...`. Note actual latency observed while writing this plan on this machine: ~1.8s warm (model already loaded), ~15s cold (first call after Ollama starts, dominated by `load_duration`) — nowhere near the original design draft's 60-350ms target; that number came from TypeSafe's own hosted, purpose-trained models, not a stock Ollama instruct model.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add scripts/smoke-test.mjs
