@@ -475,7 +475,7 @@ git commit -m "feat: map Ollama structured output to System One answer shape wit
 - Consumes: `buildSchema`, `buildPrompt` from `../src/schema.js` (Task 2); `toSystemOneAnswers` from `../src/answers.js` (Task 3).
 - Produces: `askOllama(state, questions, { model, ollamaBaseUrl, fetchImpl, timeoutMs, signal }) -> Promise<answers>`. Task 5 imports this by name from `../src/ollamaClient.js`. `model` here is always the server's configured Ollama model — never the client-supplied Jev `model` field from the request body (Global Constraints).
 
-- [ ] **Step 1: Write failing test**
+- [x] **Step 1: Write failing test**
 
 ```js
 // test/ollamaClient.test.js
@@ -548,12 +548,12 @@ test('askOllama aborts the fetch when timeoutMs elapses', async () => {
 });
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `node --test test/ollamaClient.test.js`
 Expected: FAIL with "Cannot find module '../src/ollamaClient.js'"
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 // src/ollamaClient.js
@@ -626,12 +626,12 @@ export async function askOllama(state, questions, {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `node --test test/ollamaClient.test.js`
 Expected: PASS, 5 tests
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/ollamaClient.js test/ollamaClient.test.js
