@@ -1423,7 +1423,7 @@ git commit -m "test: add manual smoke script against real Ollama"
 - Consumes: Task 1's `docs/meta/MODEL_RESEARCH.md` (actual `ollama pull` results), Task 8's eval accuracy, Task 9's observed smoke-test latency.
 - Produces: a decision record later plans and reviewers cite instead of re-litigating model choice.
 
-- [ ] **Step 1: Write the decision record**
+- [x] **Step 1: Write the decision record**
 
 ```markdown
 <!-- docs/meta/MODEL_DECISION.md -->
@@ -1464,7 +1464,7 @@ when this task ran, not the plan's illustrative numbers>.
   or similar integration until a passing eval run exists (spec §4 non-goals).
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add docs/meta/MODEL_DECISION.md
