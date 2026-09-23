@@ -1,1 +1,7 @@
 node_modules/
+
+# Local tool caches/state (not source)
+.context/
+.ijfw/
+.kb_cache/
+.serena/
