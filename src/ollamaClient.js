@@ -49,6 +49,11 @@ export async function askOllama(state, questions, {
         messages: [{ role: 'user', content: prompt }],
         stream: false,
         format: schema,
+        // Deterministic decoding: eval-confidence.mjs (and any safety-grade
+        // caller) needs the same input to keep producing the same answer.
+        // Without this, Ollama's default sampling temperature makes a single
+        // eval run's accuracy score unreproducible.
+        options: { temperature: 0, seed: 42 },
       }),
       redirect: 'error',
       signal: controller.signal,
