@@ -5,3 +5,4 @@ node_modules/
 .ijfw/
 .kb_cache/
 .serena/
+.ollama-serve.log
