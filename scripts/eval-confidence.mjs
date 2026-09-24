@@ -58,23 +58,43 @@ if (criticalRows.length) {
 // and whether it was actually correct. A model that's equally "confident"
 // whether right or wrong is not calibrated, even if its raw accuracy clears
 // the floor above.
-const scored = rows.filter((r) => r.answer && typeof r.answer.confidence === 'number');
-let calibration = null;
-if (scored.length >= 2) {
-  const xs = scored.map((r) => r.answer.confidence);
-  const ys = scored.map((r) => (r.isCorrect ? 1 : 0));
+function pearsonCalibration(scoredRows) {
+  if (scoredRows.length < 2) return null;
+  const xs = scoredRows.map((r) => r.answer.confidence);
+  const ys = scoredRows.map((r) => (r.isCorrect ? 1 : 0));
   const mean = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
   const mx = mean(xs);
   const my = mean(ys);
   const cov = xs.reduce((sum, x, i) => sum + (x - mx) * (ys[i] - my), 0);
   const sx = Math.sqrt(xs.reduce((sum, x) => sum + (x - mx) ** 2, 0));
   const sy = Math.sqrt(ys.reduce((sum, y) => sum + (y - my) ** 2, 0));
-  calibration = sx > 0 && sy > 0 ? cov / (sx * sy) : null;
+  return sx > 0 && sy > 0 ? cov / (sx * sy) : null;
 }
+
+const scored = rows.filter((r) => r.answer && typeof r.answer.confidence === 'number');
+const calibration = pearsonCalibration(scored);
 if (calibration === null) {
   console.log(`Calibration: not computable (no confidence variance or all-correct/all-wrong set) — treat as unvalidated, not as passing.`);
 } else {
   console.log(`Calibration (confidence↔correctness correlation): ${calibration.toFixed(2)} (threshold: ${CALIBRATION_THRESHOLD})`);
+}
+
+// Per-type breakdown: a pooled correlation can hide that one question type
+// (e.g. `choice`) is confidently wrong while others are well-calibrated —
+// diagnostic only, not gating (each type has too few items on this set for
+// its own correlation to be statistically stable).
+const byType = new Map();
+for (const r of scored) {
+  const type = r.question.type;
+  if (!byType.has(type)) byType.set(type, []);
+  byType.get(type).push(r);
+}
+console.log('Calibration by question type (diagnostic, not gating — small-n per type):');
+for (const [type, typeRows] of byType) {
+  const typeCorrelation = pearsonCalibration(typeRows);
+  const typeCorrect = typeRows.filter((r) => r.isCorrect).length;
+  const label = typeCorrelation === null ? 'not computable' : typeCorrelation.toFixed(2);
+  console.log(`  ${type}: n=${typeRows.length}, accuracy=${typeCorrect}/${typeRows.length}, correlation=${label}`);
 }
 
 const failReasons = [];
